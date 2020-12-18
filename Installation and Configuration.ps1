@@ -57,3 +57,9 @@ New-NetlBfoTeam -Name "nameOfNewLoadBalancerTeam" -TeamMembers "Eth0","Eth1","Et
 #### Storage 
 #
 
+# get a list of not installed features and roles
+Get-WindowsFeature | Where-Object -FilterScript{$_.Installed -Eq $False}
+
+# Remote uninstalled features from side by side SxS directory
+Get-WindowsFeature | Where-Object -FilterScript{$_.Installed -Eq $False} | Uninstall-WindowsFeature -Remove
+
